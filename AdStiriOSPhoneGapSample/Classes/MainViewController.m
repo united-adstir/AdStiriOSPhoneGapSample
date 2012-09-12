@@ -21,13 +21,13 @@
 //  MainViewController.h
 //  AdStiriOSPhoneGapSample
 //
-//  Created by ___FULLUSERNAME___ on ___DATE___.
-//  Copyright ___ORGANIZATIONNAME___ ___YEAR___. All rights reserved.
-//
 
 #import "MainViewController.h"
 
-@implementation MainViewController
+@implementation MainViewController{
+	CGPoint adLeftTop;
+	bool adInit;
+}
 
 - (id) initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -115,7 +115,16 @@
      
      // Black base color for background matches the native apps
      theWebView.backgroundColor = [UIColor blackColor];
-
+	
+	
+	if(!adInit){
+		adInit = true;
+		theWebView.frame = CGRectMake(theWebView.frame.origin.x, theWebView.frame.origin.y, theWebView.frame.size.width, theWebView.frame.size.height - 50.0f);
+		adLeftTop = CGPointMake(theWebView.frame.origin.x, theWebView.frame.origin.y + theWebView.frame.size.height);
+		self.adView = [ASTAdView requestWithAppId:@"MEDIA-ID" andSpotNo:@"SPOT-NO" andDelegate:self];
+		[self.adView start];
+		[self.view addSubview:self.adView];
+	}
 	return [super webViewDidFinishLoad:theWebView];
 }
 
@@ -137,5 +146,25 @@
 	return [super webView:theWebView shouldStartLoadWithRequest:request navigationType:navigationType];
 }
 */
+
+#pragma ASTDelegateProtocol implementation
+
+- (CGPoint) originOfAdView{
+	return adLeftTop;
+}
+
+- (void) didFailToInitView:(NSString *)appId{
+	NSLog(@"didFailToInitView");
+}
+
+- (void) didFailToLoadAdView {
+    NSLog(@"didFailToLoadAdView");
+    [self.adView nextAd];
+}
+
+- (UIViewController *) currentViewController{
+    return self;
+}
+
 
 @end

@@ -21,12 +21,12 @@
 //  MainViewController.h
 //  AdStiriOSPhoneGapSample
 //
-//  Created by ___FULLUSERNAME___ on ___DATE___.
-//  Copyright ___ORGANIZATIONNAME___ ___YEAR___. All rights reserved.
-//
+
 
 #import <Cordova/CDVViewController.h>
+#import <AdStir/ASTDelegateProtocol.h>
+#import <AdStir/ASTAdView.h>
 
-@interface MainViewController : CDVViewController
-
+@interface MainViewController : CDVViewController <ASTDelegateProtocol> 
+@property (retain) ASTAdView *adView;
 @end
