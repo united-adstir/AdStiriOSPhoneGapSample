@@ -1,7 +1,0 @@
-How to build
-
-Copy AdStir SDK
-	libs/AdstrirSDK/
-
-Edit AdStiriOSPhoneGapSample/Classes/MainViewController.m 
-	MEDIA-ID and SPOT-NO
