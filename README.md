@@ -25,8 +25,9 @@ License
 Usage
 ----------------
 
-Copy AdStir SDK
-	libs/AdstrirSDK/
+* Copy AdStir SDK
+    * libs/AdstrirSDK/
 
-Edit AdStiriOSPhoneGapSample/Classes/MainViewController.m 
-	MEDIA-ID and SPOT-NO
+* Edit AdStiriOSPhoneGapSample/Classes/MainViewController.m 
+    * MEDIA-ID and SPOT-NO
+
