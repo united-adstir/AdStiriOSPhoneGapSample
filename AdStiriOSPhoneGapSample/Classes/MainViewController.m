@@ -6,9 +6,9 @@
  to you under the Apache License, Version 2.0 (the
  "License"); you may not use this file except in compliance
  with the License.  You may obtain a copy of the License at
- 
+
  http://www.apache.org/licenses/LICENSE-2.0
- 
+
  Unless required by applicable law or agreed to in writing,
  software distributed under the License is distributed on an
  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -17,154 +17,186 @@
  under the License.
  */
 
-//
-//  MainViewController.h
-//  AdStiriOSPhoneGapSample
-//
-
 #import "MainViewController.h"
 
-@implementation MainViewController{
-	CGPoint adLeftTop;
-	bool adInit;
-}
+// AdStir
+#import "AdstirView.h"
+@interface MainViewController () <AdstirViewDelegate>
+@property (nonatomic, retain) AdstirView* adview;
+@end
 
-- (id) initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+
+
+@implementation MainViewController
+
+- (id)initWithNibName:(NSString*)nibNameOrNil bundle:(NSBundle*)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        // Uncomment to override the CDVCommandDelegateImpl used
+        // _commandDelegate = [[MainCommandDelegate alloc] initWithViewController:self];
+        // Uncomment to override the CDVCommandQueue used
+        // _commandQueue = [[MainCommandQueue alloc] initWithViewController:self];
     }
     return self;
 }
 
-- (void) didReceiveMemoryWarning
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        // Uncomment to override the CDVCommandDelegateImpl used
+        // _commandDelegate = [[MainCommandDelegate alloc] initWithViewController:self];
+        // Uncomment to override the CDVCommandQueue used
+        // _commandQueue = [[MainCommandQueue alloc] initWithViewController:self];
+    }
+    return self;
+}
+
+- (void)didReceiveMemoryWarning
 {
     // Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
-    
+
     // Release any cached data, images, etc that aren't in use.
 }
 
-#pragma mark - View lifecycle
+#pragma mark View lifecycle
 
-- (void) viewDidLoad
+- (void)viewWillAppear:(BOOL)animated
+{
+    // View defaults to full size.  If you want to customize the view's size, or its subviews (e.g. webView),
+    // you can do so here.
+	
+	CGFloat adstirWidth = 320.0;
+	CGFloat adstirHeight = 50.0;
+	
+	CGFloat adstirX = (self.webView.frame.origin.x + self.webView.frame.size.width - adstirWidth) / 2;
+	CGFloat adstirY = self.webView.frame.origin.y + self.webView.frame.size.height - adstirHeight;
+	
+	CGRect rect;
+	rect.origin = self.webView.frame.origin;
+	rect.size = self.webView.frame.size;
+	rect.size.height = rect.size.height - adstirHeight;
+	self.webView.frame = rect;
+	
+	self.adview = [[[AdstirView alloc]initWithOrigin:CGPointMake(adstirX, adstirY)]autorelease];
+	self.adview.media = @"MEDIA-ID";
+	self.adview.spot = SPOT-NO;
+	self.adview.rootViewController = self;
+	[self.adview start];
+	[self.view addSubview:self.adview];
+	
+    [super viewWillAppear:animated];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+	[self.adview stop];
+	[self.adview removeFromSuperview];
+	self.adview.rootViewController = nil;
+	self.adview = nil;
+	[super viewWillDisappear:animated];
+}
+
+- (void)viewDidLoad
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 }
 
-- (void) viewDidUnload
+- (void)viewDidUnload
 {
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 }
 
-- (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     // Return YES for supported orientations
     return [super shouldAutorotateToInterfaceOrientation:interfaceOrientation];
 }
 
 /* Comment out the block below to over-ride */
+
 /*
-- (CDVCordovaView*) newCordovaViewWithFrame:(CGRect)bounds
+- (UIWebView*) newCordovaViewWithFrame:(CGRect)bounds
 {
     return[super newCordovaViewWithFrame:bounds];
 }
 */
 
-/* Comment out the block below to over-ride */
-/*
-#pragma CDVCommandDelegate implementation
+#pragma mark UIWebDelegate implementation
 
-- (id) getCommandInstance:(NSString*)className
+- (void)webViewDidFinishLoad:(UIWebView*)theWebView
 {
-	return [super getCommandInstance:className];
-}
+    // Black base color for background matches the native apps
+    theWebView.backgroundColor = [UIColor blackColor];
 
-- (BOOL) execute:(CDVInvokedUrlCommand*)command
-{
-	return [super execute:command];
-}
-
-- (NSString*) pathForResource:(NSString*)resourcepath;
-{
-	return [super pathForResource:resourcepath];
-}
- 
-- (void) registerPlugin:(CDVPlugin*)plugin withClassName:(NSString*)className
-{
-    return [super registerPlugin:plugin withClassName:className];
-}
-*/
-
-#pragma UIWebDelegate implementation
-
-- (void) webViewDidFinishLoad:(UIWebView*) theWebView 
-{
-     // only valid if ___PROJECTNAME__-Info.plist specifies a protocol to handle
-     if (self.invokeString)
-     {
-        // this is passed before the deviceready event is fired, so you can access it in js when you receive deviceready
-		NSLog(@"DEPRECATED: window.invokeString - use the window.handleOpenURL(url) function instead, which is always called when the app is launched through a custom scheme url.");
-        NSString* jsString = [NSString stringWithFormat:@"var invokeString = \"%@\";", self.invokeString];
-        [theWebView stringByEvaluatingJavaScriptFromString:jsString];
-     }
-     
-     // Black base color for background matches the native apps
-     theWebView.backgroundColor = [UIColor blackColor];
-	
-	
-	if(!adInit){
-		adInit = true;
-		theWebView.frame = CGRectMake(theWebView.frame.origin.x, theWebView.frame.origin.y, theWebView.frame.size.width, theWebView.frame.size.height - 50.0f);
-		adLeftTop = CGPointMake(theWebView.frame.origin.x, theWebView.frame.origin.y + theWebView.frame.size.height);
-		self.adView = [ASTAdView requestWithAppId:@"MEDIA-ID" andSpotNo:@"SPOT-NO" andDelegate:self];
-		[self.adView start];
-		[self.view addSubview:self.adView];
-	}
-	return [super webViewDidFinishLoad:theWebView];
+    return [super webViewDidFinishLoad:theWebView];
 }
 
 /* Comment out the block below to over-ride */
+
 /*
 
-- (void) webViewDidStartLoad:(UIWebView*)theWebView 
+- (void) webViewDidStartLoad:(UIWebView*)theWebView
 {
-	return [super webViewDidStartLoad:theWebView];
+    return [super webViewDidStartLoad:theWebView];
 }
 
-- (void) webView:(UIWebView*)theWebView didFailLoadWithError:(NSError*)error 
+- (void) webView:(UIWebView*)theWebView didFailLoadWithError:(NSError*)error
 {
-	return [super webView:theWebView didFailLoadWithError:error];
+    return [super webView:theWebView didFailLoadWithError:error];
 }
 
 - (BOOL) webView:(UIWebView*)theWebView shouldStartLoadWithRequest:(NSURLRequest*)request navigationType:(UIWebViewNavigationType)navigationType
 {
-	return [super webView:theWebView shouldStartLoadWithRequest:request navigationType:navigationType];
+    return [super webView:theWebView shouldStartLoadWithRequest:request navigationType:navigationType];
 }
 */
 
-#pragma ASTDelegateProtocol implementation
+@end
 
-- (CGPoint) originOfAdView{
-	return adLeftTop;
+@implementation MainCommandDelegate
+
+/* To override the methods, uncomment the line in the init function(s)
+   in MainViewController.m
+ */
+
+#pragma mark CDVCommandDelegate implementation
+
+- (id)getCommandInstance:(NSString*)className
+{
+    return [super getCommandInstance:className];
 }
 
-- (void) didFailToInitView:(NSString *)appId{
-	NSLog(@"didFailToInitView");
+/*
+   NOTE: this will only inspect execute calls coming explicitly from native plugins,
+   not the commandQueue (from JavaScript). To see execute calls from JavaScript, see
+   MainCommandQueue below
+*/
+- (BOOL)execute:(CDVInvokedUrlCommand*)command
+{
+    return [super execute:command];
 }
 
-- (void) didFailToLoadAdView {
-    NSLog(@"didFailToLoadAdView");
-    [self.adView nextAd];
+- (NSString*)pathForResource:(NSString*)resourcepath;
+{
+    return [super pathForResource:resourcepath];
 }
 
-- (UIViewController *) currentViewController{
-    return self;
-}
+@end
 
+@implementation MainCommandQueue
+
+/* To override, uncomment the line in the init function(s)
+   in MainViewController.m
+ */
+- (BOOL)execute:(CDVInvokedUrlCommand*)command
+{
+    return [super execute:command];
+}
 
 @end
