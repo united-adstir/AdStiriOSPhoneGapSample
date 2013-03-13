@@ -1,7 +1,8 @@
 AdStir iOS PhoneGap / Cordova Sample
 =========================
 
-(http://wiki.ad-stir.com/)
+http://ad-stir.com/
+http://wiki.ad-stir.com/
 
 License
 ----------------
