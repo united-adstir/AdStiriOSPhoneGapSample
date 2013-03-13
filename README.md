@@ -1,12 +1,13 @@
 AdStir iOS PhoneGap / Cordova Sample
 =========================
+AdStir
+ http://ad-stir.com/
 
-http://ad-stir.com/
-http://wiki.ad-stir.com/
+AdStir Developer's Guide
+ http://wiki.ad-stir.com/
 
 License
 ----------------
-
     Copyright 2012-2013 UNITED, inc.
 
     Licensed under the Apache License, Version 2.0 (the "License");
@@ -21,13 +22,10 @@ License
     See the License for the specific language governing permissions and
     limitations under the License.
 
-
 Usage
 ----------------
-
-* Copy AdStir SDK
-     * libs/AdstrirSDK/
-
-* Edit AdStiriOSPhoneGapSample/Classes/MainViewController.m 
-     * MEDIA-ID and SPOT-NO
+1. Copy AdStir SDK
+ * libs/AdstrirSDK/
+2. Edit AdStiriOSPhoneGapSample/Classes/MainViewController.m 
+ * MEDIA-ID and SPOT-NO
 
