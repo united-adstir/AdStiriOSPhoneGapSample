@@ -41,10 +41,8 @@
 		30A0434914DC770100060A13 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 30A0434614DC770100060A13 /* Localizable.strings */; };
 		30E5649213A7FCAF007403D8 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30E5649113A7FCAF007403D8 /* CoreMedia.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		5B1594DD16A7569C00FEF299 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B1594DC16A7569C00FEF299 /* AssetsLibrary.framework */; };
-		96F1775416F024D300F4D4C9 /* libAdStir.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 96F1774E16F024D300F4D4C9 /* libAdStir.a */; };
-		96F1775516F024D300F4D4C9 /* CHANGELOG.md in Resources */ = {isa = PBXBuildFile; fileRef = 96F1775016F024D300F4D4C9 /* CHANGELOG.md */; };
-		96F1775616F024D300F4D4C9 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 96F1775216F024D300F4D4C9 /* JSONKit.m */; };
-		96F1775716F024D300F4D4C9 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 96F1775316F024D300F4D4C9 /* README.md */; };
+		96EE06D017C5F00C0068290D /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 96EE06CF17C5F00C0068290D /* README.md */; };
+		96F1775416F024D300F4D4C9 /* libAdstirWebView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 96F1774E16F024D300F4D4C9 /* libAdstirWebView.a */; };
 		D4A0D8761607E02300AEF8BB /* Default-568h@2x~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = D4A0D8751607E02300AEF8BB /* Default-568h@2x~iphone.png */; };
 		F840E1F1165FE0F500CFE078 /* config.xml in Resources */ = {isa = PBXBuildFile; fileRef = F840E1F0165FE0F500CFE078 /* config.xml */; };
 /* End PBXBuildFile section */
@@ -107,12 +105,9 @@
 		32CA4F630368D1EE00C91783 /* AdStiriOSPhoneGapSample-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AdStiriOSPhoneGapSample-Prefix.pch"; sourceTree = "<group>"; };
 		5B1594DC16A7569C00FEF299 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		8D1107310486CEB800E47090 /* AdStiriOSPhoneGapSample-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "AdStiriOSPhoneGapSample-Info.plist"; path = "../AdStiriOSPhoneGapSample-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
-		96F1774D16F024D300F4D4C9 /* AdstirView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdstirView.h; sourceTree = "<group>"; };
-		96F1774E16F024D300F4D4C9 /* libAdStir.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libAdStir.a; sourceTree = "<group>"; };
-		96F1775016F024D300F4D4C9 /* CHANGELOG.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CHANGELOG.md; sourceTree = "<group>"; };
-		96F1775116F024D300F4D4C9 /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONKit.h; sourceTree = "<group>"; };
-		96F1775216F024D300F4D4C9 /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
-		96F1775316F024D300F4D4C9 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		96EE06CF17C5F00C0068290D /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		96F1774D16F024D300F4D4C9 /* AdstirWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AdstirWebView.h; path = ../../../../../air/AdstirAne/ios/AdStirSDK/AdstirWebView.h; sourceTree = "<group>"; };
+		96F1774E16F024D300F4D4C9 /* libAdstirWebView.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libAdstirWebView.a; path = ../../../../../air/AdstirAne/ios/AdStirSDK/libAdstirWebView.a; sourceTree = "<group>"; };
 		D4A0D8751607E02300AEF8BB /* Default-568h@2x~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x~iphone.png"; sourceTree = "<group>"; };
 		F840E1F0165FE0F500CFE078 /* config.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = config.xml; path = AdStiriOSPhoneGapSample/config.xml; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -138,7 +133,7 @@
 				301BF5C5109A6A2B0062928A /* SystemConfiguration.framework in Frameworks */,
 				305D5FD1115AB8F900A74A75 /* MobileCoreServices.framework in Frameworks */,
 				30E5649213A7FCAF007403D8 /* CoreMedia.framework in Frameworks */,
-				96F1775416F024D300F4D4C9 /* libAdStir.a in Frameworks */,
+				96F1775416F024D300F4D4C9 /* libAdstirWebView.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -185,6 +180,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				96EE06CF17C5F00C0068290D /* README.md */,
 				F840E1F0165FE0F500CFE078 /* config.xml */,
 				301BF56E109A69640062928A /* www */,
 				301BF52D109A57CC0062928A /* CordovaLib.xcodeproj */,
@@ -307,7 +303,6 @@
 			isa = PBXGroup;
 			children = (
 				96F1774C16F024D300F4D4C9 /* AdstirSDK */,
-				96F1774F16F024D300F4D4C9 /* JSONKit */,
 			);
 			path = libs;
 			sourceTree = "<group>";
@@ -315,21 +310,10 @@
 		96F1774C16F024D300F4D4C9 /* AdstirSDK */ = {
 			isa = PBXGroup;
 			children = (
-				96F1774D16F024D300F4D4C9 /* AdstirView.h */,
-				96F1774E16F024D300F4D4C9 /* libAdStir.a */,
+				96F1774D16F024D300F4D4C9 /* AdstirWebView.h */,
+				96F1774E16F024D300F4D4C9 /* libAdstirWebView.a */,
 			);
 			path = AdstirSDK;
-			sourceTree = "<group>";
-		};
-		96F1774F16F024D300F4D4C9 /* JSONKit */ = {
-			isa = PBXGroup;
-			children = (
-				96F1775016F024D300F4D4C9 /* CHANGELOG.md */,
-				96F1775116F024D300F4D4C9 /* JSONKit.h */,
-				96F1775216F024D300F4D4C9 /* JSONKit.m */,
-				96F1775316F024D300F4D4C9 /* README.md */,
-			);
-			path = JSONKit;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -423,8 +407,7 @@
 				3088BBC1154F3926009F9C59 /* Default@2x~iphone.png in Resources */,
 				3088BBC2154F3926009F9C59 /* Default~iphone.png in Resources */,
 				D4A0D8761607E02300AEF8BB /* Default-568h@2x~iphone.png in Resources */,
-				96F1775516F024D300F4D4C9 /* CHANGELOG.md in Resources */,
-				96F1775716F024D300F4D4C9 /* README.md in Resources */,
+				96EE06D017C5F00C0068290D /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -455,7 +438,6 @@
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				1D3623260D0F684500981E51 /* AppDelegate.m in Sources */,
 				302D95F114D2391D003F00A1 /* MainViewController.m in Sources */,
-				96F1775616F024D300F4D4C9 /* JSONKit.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

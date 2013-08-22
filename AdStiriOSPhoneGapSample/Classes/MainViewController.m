@@ -20,9 +20,9 @@
 #import "MainViewController.h"
 
 // AdStir
-#import "AdstirView.h"
-@interface MainViewController () <AdstirViewDelegate>
-@property (nonatomic, retain) AdstirView* adview;
+#import "AdstirWebView.h"
+@interface MainViewController ()
+@property (nonatomic, retain) AdstirWebView* adview;
 @end
 
 
@@ -80,11 +80,9 @@
 	rect.size.height = rect.size.height - adstirHeight;
 	self.webView.frame = rect;
 	
-	self.adview = [[[AdstirView alloc]initWithOrigin:CGPointMake(adstirX, adstirY)]autorelease];
-	self.adview.media = @"MEDIA-ID";
-	self.adview.spot = SPOT-NO;
-	self.adview.rootViewController = self;
-	[self.adview start];
+	//self.adview = [[[AdstirWebView alloc]initWithFrame:CGRectMake(adstirX, adstirY, adstirWidth, adstirHeight) media:@"MEDIA-ID" spot:@"SPOT-NO"]autorelease];
+	self.adview = [[[AdstirWebView alloc]initWithFrame:CGRectMake(adstirX, adstirY, adstirWidth, adstirHeight) media:@"MEDIA-ID" spot:@"SPOT-NO"]autorelease];
+	self.adview.intervalTime = ADSTIRWEBVIEW_DEFAULT_INTERVAL;
 	[self.view addSubview:self.adview];
 	
     [super viewWillAppear:animated];
@@ -92,9 +90,7 @@
 
 - (void)viewWillDisappear:(BOOL)animated
 {
-	[self.adview stop];
 	[self.adview removeFromSuperview];
-	self.adview.rootViewController = nil;
 	self.adview = nil;
 	[super viewWillDisappear:animated];
 }

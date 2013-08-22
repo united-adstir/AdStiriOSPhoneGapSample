@@ -25,7 +25,7 @@ License
 Usage
 ----------------
 
-Copy AdStir SDK
+Copy libAdstirWebView.a AdstirWebView.h
 	libs/AdstrirSDK/
 
 Edit AdStiriOSPhoneGapSample/Classes/MainViewController.m 
